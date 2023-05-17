@@ -1,0 +1,106 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333333;
+  }
+  
+  p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333333;
+  }
+  
+  .section-title {
+    margin-bottom: 10px;
+    color: #333333;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  /* Styling for hobbies section */
+  .hobbies {
+    margin-top: 30px;
+  }
+  
+  .hobbies li:before {
+    content: '\2022';
+    color: #666666;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+  
+  /* Styling for interests section */
+  .interests {
+    margin-top: 30px;
+  }
+  
+  .interests li:before {
+    content: '\2022';
+    color: #666666;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+  
+  /* Styling for achievements section */
+  .achievements {
+    margin-top: 30px;
+  }
+  
+  .achievements li:before {
+    content: '\2022';
+    color: #666666;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+  
+  /* navbar.css */
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #ffc107;
+}
+
+.navbar-toggler {
+  border-color: white;
+}
+
+.navbar-toggler-icon {
+  background-color: white;
+}

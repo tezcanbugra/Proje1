@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
+app.use(express.static('public'));
 // Set up body-parser middleware to parse request bodies
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -16,7 +17,28 @@ app.use(session({
 
 // Define routes
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/pages/index.html');
+});
+app.get('/ozgecmis', (req, res) => {
+  res.sendFile(__dirname + '/pages/ozgecmis.html');
+});
+app.get('/iletisim', (req, res) => {
+  res.sendFile(__dirname + '/pages/iletisim.html');
+});
+
+app.get('/ilgiAlanlarim', (req, res) => {
+  res.sendFile(__dirname + '/pages/ilgiAlanlarim.html');
+});
+
+app.get('/benimSehrim', (req, res) => {
+  res.sendFile(__dirname + '/pages/benimSehrim.html');
+});
+app.get('/hakkimda', (req, res) => {
+  res.sendFile(__dirname + '/pages/Hakkımda.html');
+});
+
+app.get('/mirasimiz', (req, res) => {
+  res.sendFile(__dirname + '/pages/mirasimiz.html');
 });
 
 app.get('/login', (req, res) => {
