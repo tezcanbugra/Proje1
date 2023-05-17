@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        img {
+            width: 320px;
+            height: 240px;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+
+
+    <title>İlgi Alanlarım</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Make an AJAX request to fetch movie data from the OMDB API
+            $.ajax({
+                url: 'http://www.omdbapi.com/?s=lord%20of%20the%20rings&apikey=3e5889d',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.Response === 'True') {
+                        var movies = response.Search;
+
+                        // Generate HTML content for each movie
+                        var content = '';
+                        for (var i = 0; i < movies.length; i++) {
+                            var movie = movies[i];
+                            content += '<div>';
+                            content += '<h2>' + movie.Title + '</h2>';
+                            content += '<img src="' + movie.Poster + '" alt="' + movie.Title + '">';
+                            content += '<p>' + movie.Year + '</p>';
+                            content += '</div>';
+                        }
+
+                        // Append the HTML content to a container element
+                        $('#moviesContainer').html(content);
+                    } else {
+                        $('#moviesContainer').html('Failed to fetch movie data.');
+                    }
+                },
+                error: function () {
+                    $('#moviesContainer').html('Failed to fetch movie data.');
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Proje1</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/hakkimda">Hakkında</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ozgecmis">Özgeçmiş</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/mirasimiz">Mirasımız</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/benimSehrim">Şehrim</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ilgiAlanlarim">İlgi Alanlarım</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/iletisim">İletişim</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Giriş</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+    <h1>Film Önerilerim</h1>
+    <div id="moviesContainer"></div>
+</body>
+
+</html>

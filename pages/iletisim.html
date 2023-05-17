@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    
+  
+  <title>İletişim Formu</title>
+  <style>
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-container button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Proje1</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/hakkimda">Hakkında</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ozgecmis">Özgeçmiş</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/mirasimiz">Mirasımız</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/benimSehrim">Şehrim</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ilgiAlanlarim">İlgi Alanlarım</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/iletisim">İletişim</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Giriş</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="form-container">
+    <h2>İletişim Formu</h2>
+    <form id="contactForm" action="submit.php" method="POST">
+      <label for="name">Adınız:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">E-posta Adresiniz:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Mesajınız:</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit">Gönder</button>
+    </form>
+  </div>
+
+  <script>
+    // Form submission handling with client-side validation
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+      var nameInput = document.getElementById("name");
+      var emailInput = document.getElementById("email");
+      var messageInput = document.getElementById("message");
+
+      // Check if any of the fields are empty
+      if (nameInput.value === "" || emailInput.value === "" || messageInput.value === "") {
+        event.preventDefault(); // Prevent form submission
+        alert("Lütfen tüm alanları doldurun.");
+      }
+
+      // Check if email format is valid
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailInput.value)) {
+        event.preventDefault(); // Prevent form submission
+        alert("Geçerli bir e-posta adresi girin.");
+      }
+    });
+  </script>
+</body>
+
+</html>
