@@ -1,47 +1,23 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles.css">
-    
-  
   <title>İletişim Formu</title>
+  <link rel="stylesheet" href="/iletisim.css">  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/navbar.css">
   <style>
-    .form-container {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
 
-    .form-container input[type="text"],
-    .form-container input[type="email"],
-    .form-container textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .form-container button {
-      background-color: #4CAF50;
+    #clearButton {
+      background-color: blue;
       color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .form-container button:hover {
-      background-color: #45a049;
+      margin-right: 10px;
     }
   </style>
-</head>
 
+
+</head>
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -80,43 +56,34 @@
     </div>
   </nav>
 
-  <div class="form-container">
+
+  
+  <div class="container">
     <h2>İletişim Formu</h2>
-    <form id="contactForm" action="submit.php" method="POST">
-      <label for="name">Adınız:</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">E-posta Adresiniz:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="message">Mesajınız:</label>
-      <textarea id="message" name="message" required></textarea>
-
+    <form id="contactForm" action="/iletisim" method="POST">
+      <label for="nameInput">İsim:</label>
+      <input type="text" id="nameInput" name="nameInput" required>
+  
+      <label for="emailInput">Email:</label>
+      <input type="email" id="emailInput" name="emailInput" required>
+  
+      <label for="messageInput">Mesaj:</label>
+      <textarea id="messageInput" name="messageInput" rows="5" required></textarea>
+  
+ 
       <button type="submit">Gönder</button>
+
+    <button type="button" id="clearButton" onclick="clearForm()">Temizle</button>
+
+
     </form>
+  
+    <script>
+      function clearForm() {
+        document.getElementById("contactForm").reset();
+      }
+    </script>
   </div>
-
-  <script>
-    // Form submission handling with client-side validation
-    document.getElementById("contactForm").addEventListener("submit", function(event) {
-      var nameInput = document.getElementById("name");
-      var emailInput = document.getElementById("email");
-      var messageInput = document.getElementById("message");
-
-      // Check if any of the fields are empty
-      if (nameInput.value === "" || emailInput.value === "" || messageInput.value === "") {
-        event.preventDefault(); // Prevent form submission
-        alert("Lütfen tüm alanları doldurun.");
-      }
-
-      // Check if email format is valid
-      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailInput.value)) {
-        event.preventDefault(); // Prevent form submission
-        alert("Geçerli bir e-posta adresi girin.");
-      }
-    });
-  </script>
+  
 </body>
-
 </html>

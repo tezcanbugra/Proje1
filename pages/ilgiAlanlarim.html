@@ -7,6 +7,7 @@
         img {
             width: 320px;
             height: 240px;
+            
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +21,7 @@
         $(document).ready(function () {
             // Make an AJAX request to fetch movie data from the OMDB API
             $.ajax({
-                url: 'http://www.omdbapi.com/?s=lord%20of%20the%20rings&apikey=3e5889d',
+                url: 'http://www.omdbapi.com/?s=lord%20of%20the%20rings&apikey=3e5889d&type=movie',
                 dataType: 'json',
                 success: function (response) {
                     if (response.Response === 'True') {
@@ -30,8 +31,8 @@
                         var content = '';
                         for (var i = 0; i < movies.length; i++) {
                             var movie = movies[i];
-                            content += '<div>';
-                            content += '<h2>' + movie.Title + '</h2>';
+                            content += '<div align="center">';
+                            content += '<h2 align="center">' + movie.Title + '</h2>';
                             content += '<img src="' + movie.Poster + '" alt="' + movie.Title + '">';
                             content += '<p>' + movie.Year + '</p>';
                             content += '</div>';
@@ -52,7 +53,6 @@
 </head>
 
 <body>
-
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Proje1</a>
@@ -90,7 +90,10 @@
     </div>
   </nav>
 
-    <h1>Film Önerilerim</h1>
+
+    <h2 align="center">Film Önerilerim</h2>
+    <p align="center"> Veriler http://www.omdbapi.com/ API'ı kullanılarak toplanmıştır.</p>
+
     <div id="moviesContainer"></div>
 </body>
 

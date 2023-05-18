@@ -2,13 +2,15 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const path = require('path');
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static('public'));
-// Set up body-parser middleware to parse request bodies
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-// Set up session middleware to manage user sessions
 app.use(session({
   secret: 'mySecretKey',
   resave: false,
@@ -26,6 +28,20 @@ app.get('/iletisim', (req, res) => {
   res.sendFile(__dirname + '/pages/iletisim.html');
 });
 
+app.post('/iletisim', (req, res) => {
+  const isim = req.body.nameInput;
+  const email = req.body.emailInput;
+  const message = req.body.messageInput;
+    // Render an HTML page with the submitted data
+    res.send(`
+      <h1>Gönderilen Form</h1>
+      <p><strong>İsim:</strong> ${isim}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Mesaj:</strong> ${message}</p>
+    `);
+});
+
+
 app.get('/ilgiAlanlarim', (req, res) => {
   res.sendFile(__dirname + '/pages/ilgiAlanlarim.html');
 });
@@ -39,6 +55,11 @@ app.get('/hakkimda', (req, res) => {
 
 app.get('/mirasimiz', (req, res) => {
   res.sendFile(__dirname + '/pages/mirasimiz.html');
+});
+
+app.get('/user', (req, res) => {
+  username = req.session.id
+  res.sendFile(__dirname + '/pages/user.html',{username:username});
 });
 
 app.get('/login', (req, res) => {
@@ -57,9 +78,9 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  if (username === 'admin' && password === 'password') {
+  if (username === 'B221210374' && password === 'B221210374') {
     req.session.username = username;
-    res.redirect('/');
+    res.redirect('/user?id='+username);
   } else {
     res.send('Geçersiz Kullanıcı Adı/Parola');
   }
