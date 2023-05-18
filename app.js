@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const path = require('path');
+const port = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -87,6 +88,5 @@ app.post('/login', (req, res) => {
 });
 
 // Start the server
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
-});
+
+app.listen(port, () => console.log(`App listening on port ${port}!`));
